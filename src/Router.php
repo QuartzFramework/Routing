@@ -9,8 +9,6 @@ namespace quartz\Routing;
 
 class Router extends \quartz{
 
-
-
 	/**
 	 * Matches Protocol, and path
 	 * @param  String $protocol The protocol that should've been used
@@ -74,31 +72,6 @@ class Router extends \quartz{
 	public function get($path, $function = false, $method = false){
 		if($this->match('GET',$path,$function,$method)): return true; endif;
 		return false;
-	}
-
-	/**
-	 * [[Description]]
-	 * @param  [[Type]] [$settings = false] [[Description]]
-	 * @return [[Type]] [[Description]]
-	 */
-	public function run($settings = false){
-		if($settings):
-			$this->settings = array_merge($this->settings,$settings);
-		endif;
-
-		if(empty($this->stack['prints'])):
-			return;
-		endif;
-
-		$stack = [];
-		foreach($this->stack['prints'] as $print):
-			$stack[] = $print;
-		endforeach;
-
-		if(strtolower($this->settings['return']) === 'json'):
-			$stack = json_encode($stack);
-		endif;
-		return $stack;
 	}
 
 	/**
